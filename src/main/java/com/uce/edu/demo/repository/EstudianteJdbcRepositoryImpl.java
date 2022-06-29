@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.to.Estudiante;
-import com.uce.edu.demo.to.Persona;
+import com.uce.edu.demo.to.PersonaTo;
 
 @Repository
 public class EstudianteJdbcRepositoryImpl implements IEstudianteJdbcRepository{

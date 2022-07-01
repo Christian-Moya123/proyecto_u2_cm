@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.repository.IEstudianteJdbcRepository;
 import com.uce.edu.demo.repository.IPersonaJdbcRepository;
-import com.uce.edu.demo.to.Estudiante;
+import com.uce.edu.demo.to.EstudianteTo;
 
 @Service
 public class EstudianteJdbcServiceImpl  implements IEstudianteJdbcService{
@@ -14,14 +14,14 @@ public class EstudianteJdbcServiceImpl  implements IEstudianteJdbcService{
 	private IEstudianteJdbcRepository iEstudianteJdbcRepository;
 
 	@Override
-	public void guardarEstudiante(Estudiante estudiante) {
+	public void guardarEstudiante(EstudianteTo estudiante) {
 		// TODO Auto-generated method stub
 		this.iEstudianteJdbcRepository.insertar(estudiante);
 		
 	}
 
 	@Override
-	public void actualizarEstudiante(Estudiante estudinte) {
+	public void actualizarEstudiante(EstudianteTo estudinte) {
 		// TODO Auto-generated method stub
 		this.iEstudianteJdbcRepository.actualizar(estudinte);
 	}
@@ -33,7 +33,7 @@ public class EstudianteJdbcServiceImpl  implements IEstudianteJdbcService{
 	}
 
 	@Override
-	public Estudiante buscarEstudiante(int id) {
+	public EstudianteTo buscarEstudiante(int id) {
 		// TODO Auto-generated method stub
 		return this.iEstudianteJdbcRepository.buscarPorId(id);
 	}

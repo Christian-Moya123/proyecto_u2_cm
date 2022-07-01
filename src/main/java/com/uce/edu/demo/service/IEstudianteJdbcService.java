@@ -1,12 +1,12 @@
 package com.uce.edu.demo.service;
 
-import com.uce.edu.demo.to.Estudiante;
+import com.uce.edu.demo.to.EstudianteTo;
 import com.uce.edu.demo.to.PersonaTo;
 
 public interface IEstudianteJdbcService {
 
-	public void guardarEstudiante(Estudiante estudiante);
-	public void actualizarEstudiante(Estudiante estudinte);
+	public void guardarEstudiante(EstudianteTo estudiante);
+	public void actualizarEstudiante(EstudianteTo estudinte);
 	public void eliminaraEstudiante(int id);
-	public Estudiante buscarEstudiante(int id);
+	public EstudianteTo buscarEstudiante(int id);
 }

@@ -42,46 +42,31 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		logger.info("Datos con Jpa: " + this.iEstudianteJpaService.buscarEstudiante(5).toString());
-		/*
+		//buscar
+		//logger.info("Datos con Jpa: " + this.iPersonaJpaService.buscarPorId(7));
+		
 		Persona per = new Persona();
-		per.setId(7);
-		per.setApellido("ANdaluz");
-		per.setNombre("Luis");
+		//per.setId(8);
+		per.setApellido("Alex2");
+		per.setNombre("Paez");
 		
 		//insertar
-		//this.iPersonaJpaService.insertar(per);
+		this.iPersonaJpaService.insertar(per);
 		
+		//actualizar
 		Persona per2 = new Persona();
 		per2.setId(7);
 		per2.setApellido("Andaluz");
 		per2.setNombre("Abel");
 		
-		//actualizar
 		//this.iPersonaJpaService.actualizar(per2);
 		
 		//eliminar
 		//this.iPersonaJpaService.eliminar(1);
 		
-		*/
 		
-		Estudiante estu = new Estudiante();
-		estu.setId(10);
-		estu.setNombre("AAABEl");
-		estu.setApellido("Angulo");
-		estu.setEdad(19);
-		estu.setCedula("0888");
 		
-		//this.iEstudianteJpaService.guardarEstudiante(estu);
 		
-		Estudiante estu2 = new Estudiante();
-		estu2.setId(10);
-		estu2.setNombre("Abel");
-		estu2.setApellido("Angulo");
-		estu2.setEdad(19);
-		estu2.setCedula("0888");
-		//this.iEstudianteJpaService.actualizarEstudiante(estu2);
-		this.iEstudianteJpaService.eliminaraEstudiante(5);
 		
 	}
 		

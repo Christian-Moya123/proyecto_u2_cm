@@ -14,23 +14,46 @@ public class Persona {
 	//nunca usar atributus con primitivas
 	
 	@Id
-	@Column(name="id")
+	@Column(name="pers_id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "name_gerneration")
 	@SequenceGenerator(name = "name_gerneration",sequenceName = "pers_id_seq", allocationSize = 1)//este si tienen que tener el nombre de mi secuencia en SQL
 	private Integer id; 
 	
-	@Column(name="nombre")
+	@Column(name="pers_nombre")
 	private String nombre;
 	
-	@Column(name="apellido")
+	@Column(name="pers_apellido")
 	private String apellido;
+	
+	@Column(name="pers_genero")
+	private String genero;
+	
+	@Column(name="pers_cedula")
+	private String cedula;
+	
 	
 	@Override
 	public String toString() {
-		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + "]";
+		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", genero=" + genero
+				+ ", cedula=" + cedula + "]";
 	}
-	
 	//set y get
+	
+	
+	public String getGenero() {
+		return genero;
+	}
+	public String getCedula() {
+		return cedula;
+	}
+
+	public void setCedula(String cedula) {
+		this.cedula = cedula;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
 	public Integer getId() {
 		return id;
 	}

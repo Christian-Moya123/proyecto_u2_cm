@@ -2,6 +2,8 @@ package com.uce.edu.demo;
 
 
 
+import java.util.List;
+
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -47,11 +49,24 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		Persona per = new Persona();
 		//per.setId(8);
-		per.setApellido("Alex2");
-		per.setNombre("Paez");
+		per.setApellido("Maria");
+		per.setNombre("Charro");
+		per.setCedula("002");
+		per.setGenero("femenino");
 		
 		//insertar
-		this.iPersonaJpaService.insertar(per);
+		//this.iPersonaJpaService.insertar(per);
+		
+		//buscar pòr cedula
+		
+		//logger.info("Datos con Jpa: " + this.iPersonaJpaService.buscarCedula("001"));
+		
+		//buscar pòr apellido
+		List<Persona> listaPersona = this.iPersonaJpaService.buscarApellido("Alex2");
+		for(Persona item : listaPersona) {
+			logger.info("Persona: "+ item);
+		}
+		
 		
 		//actualizar
 		Persona per2 = new Persona();

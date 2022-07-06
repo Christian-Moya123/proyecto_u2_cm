@@ -1,7 +1,10 @@
 package com.uce.edu.demo.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -39,6 +42,25 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		// TODO Auto-generated method stub
 		Persona persona = this.buscarPorId(id);
 		this.entityManager.remove(persona);
+	}
+
+	@Override
+	public Persona buscarPorCedula(String cedula) {
+		// TODO Auto-generated method stub
+		//SELECT * FROM persona where pers_cedula='Alex2'
+		//javaxpersisten
+		Query jpqlQuery = this.entityManager.createQuery("SELECT p FROM Persona p where p.cedula = :datoCedula");
+		jpqlQuery.setParameter("datoCedula", cedula);
+		
+		return (Persona) jpqlQuery.getSingleResult();//ME DA UN OBJETO DE TIPO PERSONA
+	}
+
+	@Override
+	public List<Persona> buscarPorApellido(String apellido) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p where p.apellido = :datoApellido");
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.getResultList();
 	}
 
 }

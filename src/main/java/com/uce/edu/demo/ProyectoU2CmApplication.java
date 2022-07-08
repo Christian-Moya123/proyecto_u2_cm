@@ -68,6 +68,18 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		}
 		
 		
+		//buscar pòr nombre
+		List<Persona> listaPersonaNombre = this.iPersonaJpaService.buscarNombre("Paez");
+				for(Persona item : listaPersonaNombre) {
+					logger.info("Nombre de la Persona: "+ item);
+				}
+				
+		//buscar pòr genero
+		List<Persona> listaPersonaGenero = this.iPersonaJpaService.buscarGenero("masculino");
+				for(Persona item : listaPersonaGenero) {
+					logger.info("Genero de la Persona: "+ item);
+				}		
+		
 		//actualizar
 		Persona per2 = new Persona();
 		per2.setId(7);

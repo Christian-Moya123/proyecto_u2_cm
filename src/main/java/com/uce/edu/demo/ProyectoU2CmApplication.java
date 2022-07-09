@@ -47,51 +47,12 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		//buscar
 		//logger.info("Datos con Jpa: " + this.iPersonaJpaService.buscarPorId(7));
 		
-		Persona per = new Persona();
-		//per.setId(8);
-		per.setApellido("Maria");
-		per.setNombre("Charro");
-		per.setCedula("002");
-		per.setGenero("femenino");
-		
-		//insertar
-		//this.iPersonaJpaService.insertar(per);
-		
-		//buscar pòr cedula
-		
-		//logger.info("Datos con Jpa: " + this.iPersonaJpaService.buscarCedula("001"));
-		
-		//buscar pòr apellido
-		List<Persona> listaPersona = this.iPersonaJpaService.buscarApellido("Alex2");
-		for(Persona item : listaPersona) {
-			logger.info("Persona: "+ item);
-		}
-		
-		
-		//buscar pòr nombre
-		List<Persona> listaPersonaNombre = this.iPersonaJpaService.buscarNombre("Paez");
-				for(Persona item : listaPersonaNombre) {
-					logger.info("Nombre de la Persona: "+ item);
-				}
-				
-		//buscar pòr genero
-		List<Persona> listaPersonaGenero = this.iPersonaJpaService.buscarGenero("masculino");
-				for(Persona item : listaPersonaGenero) {
-					logger.info("Genero de la Persona: "+ item);
-				}		
-		
 		//actualizar
-		Persona per2 = new Persona();
-		per2.setId(7);
-		per2.setApellido("Andaluz");
-		per2.setNombre("Abel");
-		
-		//this.iPersonaJpaService.actualizar(per2);
+		//int resultado = this.iPersonaJpaService.actualizarPorApellido("MA", "Mar");
+		//logger.info("Cantidad de resgistros actuliazados : "+ resultado);
 		
 		//eliminar
-		//this.iPersonaJpaService.eliminar(1);
-		
-		
+		this.iPersonaJpaService.eliminarPorGenero("MA");
 		
 		
 		

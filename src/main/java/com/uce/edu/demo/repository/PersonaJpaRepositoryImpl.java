@@ -69,7 +69,7 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		// TODO Auto-generated method stub
 		Query myQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula");
 		myQuery.setParameter("datoCedula", cedula);
-		return (Persona) myQuery.getSingleResult();
+		return  (Persona) myQuery.getSingleResult();
 	}
 	
 	

@@ -3,14 +3,19 @@ package com.uce.edu.demo.repository.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="estudiante")
+@NamedQuery(name="Estudiante.buscarPorCedula" , query="SELECT e FROM Estudiante e where e.cedula = :datoCedula")
+@NamedQuery(name="Estudiante.buscarPorNombreApellido",query="SELECT e FROM Estudiante e where e.nombre = :datoNombre AND e.apellido = :datoApellido ")
+@NamedQuery(name="Estudiante.buscarPorEdad",query="SELECT e FROM Estudiante e where e.edad = :datoEdad  ")
+@NamedQuery(name="Estudiante.buscarPorNombreConA",query="SELECT e FROM Estudiante e where e.nombre = :datoNombre ")
 public class Estudiante {
 	@Id
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	
 	@Column(name="nombre")
 	private String nombre;
@@ -19,7 +24,7 @@ public class Estudiante {
 	private String apellido;
 	
 	@Column(name = "edad")
-	private int edad;
+	private Integer edad;
 	
 	@Column(name = "cedula")
 	private String cedula;

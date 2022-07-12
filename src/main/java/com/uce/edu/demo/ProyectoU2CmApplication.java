@@ -75,7 +75,7 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		
 		//type query
-		
+	/*	
 		Persona perTyped = this.iPersonaJpaService.buscarPorCedulaType("0011");
 		logger.info("persona con typed " + perTyped);
 		
@@ -92,8 +92,45 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		for(Persona item:listaPersona) {
 			logger.info("persona: " + item);
+		}*/
+		
+		Estudiante estu1 = new Estudiante();
+		estu1.setApellido("Marin");
+		estu1.setNombre("Anabel");
+		estu1.setCedula("0010");
+		estu1.setEdad(15);
+		estu1.setId(4);
+		//this.iEstudianteJpaService.guardarEstudiante(estu1);
+		
+		//type query Estudiante
+		Estudiante estuTyped1 = this.iEstudianteJpaService.buscarPorCedulaType("0010");
+		logger.info("estudiante con typed: " + estuTyped1);
+		
+		List<Estudiante> listaEstuTyped2 =  this.iEstudianteJpaService.buscarPorNombreApellidoType("Anabel","Marin");
+		for(Estudiante item:listaEstuTyped2) {
+			logger.info("estudiante2 con typed: " + item);
 		}
 		
+		//named query Estudiante
+		List<Estudiante> listaEstuNamed1 =  this.iEstudianteJpaService.buscarPorNombreConANamed("Anabel");
+		for(Estudiante item:listaEstuNamed1) {
+			logger.info("estudiante1 con named: " + item);
+		}
+		
+		List<Estudiante> listaEstuNamed2 =  this.iEstudianteJpaService.buscarPorEdadNamed(19);
+		for(Estudiante item:listaEstuNamed2) {
+			logger.info("estudiante2 con named: " + item);
+		}
+		
+		//named query Estudiante
+		Estudiante EstuNamedTyped1 =  this.iEstudianteJpaService.buscarPorCedulaNamedTyped("0010");
+		logger.info("estudiante con typedNamed: " + EstuNamedTyped1);
+		
+		
+		List<Estudiante> listaEstuNamedTyped2 =  this.iEstudianteJpaService.buscarPorNombreApellidoNamedType("Anabel","Marin");
+		for(Estudiante item:listaEstuNamedTyped2) {
+			logger.info("estudiante2 con namedTped: " + item);
+		}
 	}
 		
 }

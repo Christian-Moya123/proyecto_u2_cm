@@ -12,9 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
+/*
 @Entity
-@Table(name="matricula")
+@Table(name="matricula")*/
 public class Matricula {
 	
 	@Id

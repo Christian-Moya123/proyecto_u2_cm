@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
@@ -54,12 +55,45 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		
 		return (Persona) jpqlQuery.getSingleResult();//ME DA UN OBJETO DE TIPO PERSONA
 	}
+	
+	public Persona buscarPorCedulaType(String cedula) {
+		TypedQuery<Persona> myTypedQuery = this.entityManager.createQuery("SELECT p FROM Persona p where p.cedula = :datoCedula", Persona.class);
+		myTypedQuery.setParameter("datoCedula", cedula);
+		return myTypedQuery.getSingleResult();
+		
+	}
+	
+	
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		Query myQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula");
+		myQuery.setParameter("datoCedula", cedula);
+		return (Persona) myQuery.getSingleResult();
+	}
+	
+	
+	public Persona buscarPorCedulaNamedTyped(String cedula) {
+		TypedQuery<Persona> myTypedQuery = this.entityManager.createNamedQuery("Persona.buscarPorCedula", Persona.class);
+		myTypedQuery.setParameter("datoCedula", cedula);
+		return myTypedQuery.getSingleResult();
+	}
+	
 
 	@Override
 	public List<Persona> buscarPorApellido(String apellido) {
 		// TODO Auto-generated method stub
 		Query myQuery = this.entityManager.createQuery("SELECT p FROM Persona p where p.apellido = :datoApellido");
 		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.getResultList();
+	}
+	
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		TypedQuery<Persona> myQuery = this.entityManager.createNamedQuery("Persona.buscarPorNombreApellido", Persona.class);
+		myQuery.setParameter("datoApellido", apellido);
+		myQuery.setParameter("datoNombre", nombre);
 		return myQuery.getResultList();
 	}
 
@@ -100,6 +134,10 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		
 		return myQuery.executeUpdate();
 	}
+
+
+
+	
 
 
 

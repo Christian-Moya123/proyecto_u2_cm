@@ -36,15 +36,16 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	private static Logger logger = Logger.getLogger(ProyectoU2CmApplication.class);
 	
-	/*
-	@Autowired
-	private IPersonaJdbcService iPersonaJdbcService;
+	
+	//@Autowired
+	//private IPersonaJdbcService iPersonaJdbcService;
 	
 	@Autowired
 	private IPersonaJpaService iPersonaJpaService;
 	
-	@Autowired IEstudianteJpaService iEstudianteJpaService;*/
-	
+	@Autowired 
+	private IEstudianteJpaService iEstudianteJpaService;
+	/*
 	@Autowired
 	private IVehiculoService iVehiculoService;
 	
@@ -52,7 +53,7 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	private IPropietarioService iPropietarioService;
 	
 	@Autowired
-	private IMatriculaGestorService iMatriculaGestorService;
+	private IMatriculaGestorService iMatriculaGestorService;*/
 	
 	
 	public static void main(String[] args)  {
@@ -64,42 +65,34 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		//buscar
-	/*	//logger.info("Datos con Jpa: " + this.iPersonaJpaService.buscarPorId(7));
+		Persona per1 = new Persona();
+		per1.setApellido("velascas");
+		per1.setCedula("0011");
+		per1.setNombre("Alexander");
+		per1.setGenero("masculino");
 		
-		//actualizar
-		//int resultado = this.iPersonaJpaService.actualizarPorApellido("MA", "Mar");
-		//logger.info("Cantidad de resgistros actuliazados : "+ resultado);
-		
-		//eliminar
-		this.iPersonaJpaService.eliminarPorGenero("MA");*/
-		
-		//Punto
-		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setMarca("toyota");
-		vehiculo.setPlaca("sts2222");
-		vehiculo.setPrecio(new BigDecimal(50000));
-		vehiculo.setTipo("L");
-		
-		this.iVehiculoService.insertarV(vehiculo);
-		
-		//Punto 2
-		vehiculo.setPrecio(new BigDecimal(3500));
-		vehiculo.setMarca("AWM");
-		//this.iVehiculoService.actualizarV(vehiculo);
+		//this.iPersonaJpaService.insertar(per1);
 		
 		
-		//Punto 3
-		Propietario pro = new Propietario();
-		pro.setApellido("Moya");
-		pro.setNombre("Christian");
-		pro.setCedula("12312312");
-		pro.setFecha(LocalDateTime.now());
-		this.iPropietarioService.crear(pro);
+		//type query
 		
-		//Punto 4
-		//this.iMatriculaGestorService.generarMaatricula("12312312", "sts2222");
+		Persona perTyped = this.iPersonaJpaService.buscarPorCedulaType("0011");
+		logger.info("persona con typed " + perTyped);
 		
+		//named query
+		Persona perNamed = this.iPersonaJpaService.buscarPorCedulaNamed("0011");
+		logger.info("persona con Named " + perNamed);
+		
+		//typed y named query
+		Persona perTypedNamed = this.iPersonaJpaService.buscarPorCedulaNamedTyped("0011");
+		logger.info("persona con TypedNamed " + perTypedNamed);
+		
+		//varios named query
+		List<Persona> listaPersona = this.iPersonaJpaService.buscarPorNombreApellido("Paez", "Alex2");
+		
+		for(Persona item:listaPersona) {
+			logger.info("persona: " + item);
+		}
 		
 	}
 		

@@ -5,11 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="persona")//debe estar escrito con el nombre de la tabla
+//Primera forma para usar varios named query
+@NamedQuery(name="Persona.buscarPorCedula" , query="SELECT p FROM Persona p where p.cedula = :datoCedula")//es to es para usar type query
+@NamedQuery(name="Persona.buscarPorNombreApellido",query="SELECT p FROM Persona p where p.nombre = :datoNombre AND p.apellido = :datoApellido ")
+
+/*//segfunda forma para usar varios named query
+@NamedQueries({@NamedQuery(name="Persona.buscarPorNombreApellido",query="SELECT p FROM Persona p where p.nombre = :datoNombre AND p.apellido = :datoApellido "),
+			   @NamedQuery(name="Persona.buscarPorCedula" , query="SELECT p FROM Persona p where p.cedula = :datoCedula")})
+*/
 public class Persona {
 	//nunca usar atributus con primitivas
 	

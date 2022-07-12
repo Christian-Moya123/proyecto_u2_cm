@@ -8,7 +8,7 @@ import com.uce.edu.demo.repository.modelo.Persona;
 public interface IVehiculoRepository {
 	
 	public void insertar(Vehiculo vehiculo);
-	public int actualizarPorPlaca(Vehiculo vehiculo);
+	public void actualizarPorPlaca(Vehiculo vehiculo);
 	public int eliminarPorPlaca(String placa);
 	public List<Vehiculo> buscarPorPlaca(String placa);
 	

@@ -75,4 +75,28 @@ public class PersonaJpaServiceImpl implements IPersonaJpaService{
 		return this.iPersonaJpaRepository.eliminarPorGenero(genero);
 	}
 
+	@Override
+	public Persona buscarPorCedulaType(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaType(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaNamed(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaNamed(cedula);
+	}
+
+	@Override
+	public Persona buscarPorCedulaNamedTyped(String cedula) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorCedulaNamedTyped(cedula);
+	}
+
+	@Override
+	public List<Persona> buscarPorNombreApellido(String nombre, String apellido) {
+		// TODO Auto-generated method stub
+		return this.iPersonaJpaRepository.buscarPorNombreApellido(nombre, apellido);
+	}
+
 }

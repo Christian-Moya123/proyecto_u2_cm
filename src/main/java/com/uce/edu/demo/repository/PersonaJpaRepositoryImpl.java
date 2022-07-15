@@ -157,6 +157,7 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		return myQuery.getSingleResult();
 	}
 
+	//CRITERIA API
 	@Override
 	public Persona buscarPorCedulaCriteriaApi(String cedula) {
 		// TODO Auto-generated method stub
@@ -169,7 +170,7 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 		
 		
 		TypedQuery<Persona> myQueryFinal =  this.entityManager.createQuery(myQuery.select(personaRoot).where(myBuilder.equal(personaRoot.get("cedula"), cedula)));
-		return myQueryFinal;
+		return (Persona) myQueryFinal;
 	}
 
 

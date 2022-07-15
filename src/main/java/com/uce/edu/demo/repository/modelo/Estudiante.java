@@ -3,6 +3,7 @@ package com.uce.edu.demo.repository.modelo;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -12,6 +13,10 @@ import javax.persistence.Table;
 @NamedQuery(name="Estudiante.buscarPorNombreApellido",query="SELECT e FROM Estudiante e where e.nombre = :datoNombre AND e.apellido = :datoApellido ")
 @NamedQuery(name="Estudiante.buscarPorEdad",query="SELECT e FROM Estudiante e where e.edad = :datoEdad  ")
 @NamedQuery(name="Estudiante.buscarPorNombreConA",query="SELECT e FROM Estudiante e where e.nombre = :datoNombre ")
+
+//Native Query
+@NamedNativeQuery(name ="Estudiante.buscarPorNombreApellidoNative" , query= "SELECT * FROM estudiante WHERE nombre = :datoNombre AND apellido = :datoApellido  ", resultClass = Estudiante.class)
+@NamedNativeQuery(name ="Estudiante.buscarPorIdNative", query= "SELECT * FROM estudiante WHERE id = :datoId", resultClass = Estudiante.class)
 public class Estudiante {
 	@Id
 	@Column(name="id")

@@ -94,13 +94,43 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 			logger.info("persona: " + item);
 		}*/
 		
-		
+		/*
 		//NATIVE QUERY
 		Persona perNativeQuery = this.iPersonaJpaService.buscarPorCedulaNative("001");
 		logger.info("persona con Native query " + perNativeQuery);
 		
+		//Named NATIVE QUERY
 		Persona perNamedNativeQuery = this.iPersonaJpaService.buscarPorCedulaNamedNative("002");
-		logger.info("persona con Native query " + perNamedNativeQuery);
+		logger.info("persona con Native query " + perNamedNativeQuery);*/
+		
+		Estudiante estu1 = new Estudiante();
+		estu1.setApellido("Charro");
+		estu1.setNombre("Abelh");
+		estu1.setCedula("0023");
+		estu1.setEdad(22);
+		estu1.setId(14);
+		//this.iEstudianteJpaService.guardarEstudiante(estu1);
+		
+		//NATIVE QUERY
+		Estudiante estuNativeQuery = this.iEstudianteJpaService.buscarPorCedulaNative("002");
+		logger.info("estudiante con Native query " +estuNativeQuery);
+		
+		List<Estudiante> listaEstudianteNaativeQuery = this.iEstudianteJpaService.buscarPorEdadNative(22);
+		
+		for(Estudiante item:listaEstudianteNaativeQuery) {
+			logger.info("estudiante con Naative Query: " + item);
+		}
+		
+		
+		//NAMED NATIVE QUERY
+		Estudiante estuNamedNativeQuery = this.iEstudianteJpaService.buscarPorIddNative(14);
+		logger.info("persona con Named Native query " +estuNamedNativeQuery);
+		
+		List<Estudiante> listaEstudianteNamedNaativeQuery = this.iEstudianteJpaService.buscarPorNombreApellidoNamedNative("Abelh", "Charro");
+		
+		for(Estudiante item:listaEstudianteNamedNaativeQuery) {
+			logger.info("estudiante con Named Naative Query: " + item);
+		}
 	}
 		
 }

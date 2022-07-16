@@ -94,42 +94,30 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 			logger.info("persona: " + item);
 		}*/
 		
-		/*
-		//NATIVE QUERY
+		
+	/*	//NATIVE QUERY
 		Persona perNativeQuery = this.iPersonaJpaService.buscarPorCedulaNative("001");
 		logger.info("persona con Native query " + perNativeQuery);
 		
 		//Named NATIVE QUERY
 		Persona perNamedNativeQuery = this.iPersonaJpaService.buscarPorCedulaNamedNative("002");
-		logger.info("persona con Native query " + perNamedNativeQuery);*/
+		logger.info("persona con Named Native query " + perNamedNativeQuery);
 		
-		Estudiante estu1 = new Estudiante();
-		estu1.setApellido("Charro");
-		estu1.setNombre("Abelh");
-		estu1.setCedula("0023");
-		estu1.setEdad(22);
-		estu1.setId(14);
-		//this.iEstudianteJpaService.guardarEstudiante(estu1);
+		//Criteria API
+		Persona perCriteriaApiQuery = this.iPersonaJpaService.buscarPorCedulaCriteriaApi("002");
+		logger.info("persona con Criteriaa API " + perCriteriaApiQuery);*/
 		
-		//NATIVE QUERY
-		Estudiante estuNativeQuery = this.iEstudianteJpaService.buscarPorCedulaNative("002");
-		logger.info("estudiante con Native query " +estuNativeQuery);
+		//Criteria API dinmica
+		List<Persona> listaPersona1 = this.iPersonaJpaService.buscarPorDinamicamnteCriteriaApi("Paez", "Alex2","masculino");
 		
-		List<Estudiante> listaEstudianteNaativeQuery = this.iEstudianteJpaService.buscarPorEdadNative(22);
-		
-		for(Estudiante item:listaEstudianteNaativeQuery) {
-			logger.info("estudiante con Naative Query: " + item);
+		for(Persona item:listaPersona1) {
+			logger.info("persona: " + item);
 		}
 		
+		List<Persona> listaPersona2 = this.iPersonaJpaService.buscarPorDinamicamnteCriteriaApi("Charro", "Maria","femenino");
 		
-		//NAMED NATIVE QUERY
-		Estudiante estuNamedNativeQuery = this.iEstudianteJpaService.buscarPorIddNative(14);
-		logger.info("persona con Named Native query " +estuNamedNativeQuery);
-		
-		List<Estudiante> listaEstudianteNamedNaativeQuery = this.iEstudianteJpaService.buscarPorNombreApellidoNamedNative("Abelh", "Charro");
-		
-		for(Estudiante item:listaEstudianteNamedNaativeQuery) {
-			logger.info("estudiante con Named Naative Query: " + item);
+		for(Persona item:listaPersona2) {
+			logger.info("persona con and y or: " + item);
 		}
 	}
 		

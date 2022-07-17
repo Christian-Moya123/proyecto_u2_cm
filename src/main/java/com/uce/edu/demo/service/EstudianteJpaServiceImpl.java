@@ -99,4 +99,18 @@ public class EstudianteJpaServiceImpl  implements IEstudianteJpaService{
 		return this.iEstudianteJpaRepository.buscarPorIddNative(id);
 	}
 
+	@Override
+	public List<Estudiante> buscarPorDinamicamentePredicadosEdadCriteriaApi(String nombre, String apellido,
+			Integer edad) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorDinamicamentePredicadosEdadCriteriaApi(nombre, apellido, edad);
+	}
+
+	@Override
+	public List<Estudiante> buscarPorDinamicamentePredicadosOrdenadoCriteriaApi(String nombre, String apellido,
+			Integer id, int edad) {
+		// TODO Auto-generated method stub
+		return this.iEstudianteJpaRepository.buscarPorDinamicamentePredicadosOrdenadoCriteriaApi(nombre, apellido, id, edad);
+	}
+
 }

@@ -1,11 +1,16 @@
 package com.uce.edu.demo.repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,6 +136,70 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository{
 		TypedQuery<Estudiante> myQuery = this.entityManager.createNamedQuery("Estudiante.buscarPorIdNative", Estudiante.class);
 		myQuery.setParameter("datoId", id);
 		return myQuery.getSingleResult();
+	}
+
+	//Criteria API
+	@Override
+	public List<Estudiante> buscarPorDinamicamentePredicadosEdadCriteriaApi(String nombre, String apellido, Integer edad) {
+		// TODO Auto-generated method stub
+		CriteriaBuilder myCriteria = this.entityManager.getCriteriaBuilder();
+        CriteriaQuery<Estudiante> myQuery = myCriteria.createQuery(Estudiante.class);
+
+        Root<Estudiante> myTabla = myQuery.from(Estudiante.class);
+
+        Predicate predicadoNombre = myCriteria.equal(myTabla.get("nombre"), nombre);
+        Predicate predicadoApellido = myCriteria.equal(myTabla.get("apellido"), apellido);
+        Predicate predicadoEdad = myCriteria.equal(myTabla.get("edad"), edad);
+
+        Predicate miPredicadoFinal = null;
+
+        //AND Y OR EN UNA MISMA SENTENCIA sql
+        if (edad>15) {
+            miPredicadoFinal = myCriteria.or(predicadoNombre, predicadoEdad);
+            
+        } else  {
+        	miPredicadoFinal = myCriteria.and(predicadoApellido, predicadoEdad);
+        }
+
+        myQuery.select(myTabla).where(miPredicadoFinal);
+        TypedQuery<Estudiante> myQueryFinal = this.entityManager
+                .createQuery(myQuery);
+
+        return myQueryFinal.getResultList();
+	}
+
+	@Override
+	public List<Estudiante> buscarPorDinamicamentePredicadosOrdenadoCriteriaApi(String nombre, String apellido,
+			Integer id, int edad) {
+		// TODO Auto-generated method stub
+		CriteriaBuilder myCriteria = this.entityManager.getCriteriaBuilder();
+        CriteriaQuery<Estudiante> myQuery = myCriteria.createQuery(Estudiante.class);
+
+        Root<Estudiante> myTabla = myQuery.from(Estudiante.class);
+
+        Predicate predicadoNombre = myCriteria.equal(myTabla.get("nombre"), nombre);
+        Predicate predicadoApellido = myCriteria.equal(myTabla.get("apellido"), apellido);
+        Predicate predicadoId = myCriteria.equal(myTabla.get("edad"), id);
+        Predicate predicadoEdad = myCriteria.equal(myTabla.get("edad"), edad);
+
+        Predicate miPredicadoFinal = null;
+        int comparacion = 15;
+
+        //AND Y OR EN UNA MISMA SENTENCIA sql
+        if (edad>11) {
+            miPredicadoFinal = myCriteria.or(predicadoNombre, predicadoEdad);
+            
+        } else if(edad <20) {
+        	miPredicadoFinal = myCriteria.or(predicadoNombre, predicadoApellido);
+        	 myCriteria.and(miPredicadoFinal,predicadoEdad);
+        	
+        }
+
+        myQuery.select(myTabla).where(miPredicadoFinal);
+        TypedQuery<Estudiante> myQueryFinal = this.entityManager
+                .createQuery(myQuery);
+
+        return myQueryFinal.getResultList();
 	}
 
 }

@@ -29,4 +29,7 @@ public interface IEstudianteJpaRepository {
 	public List<Estudiante>  buscarPorNombreApellidoNamedNative(String nombre, String apellido);
 	public Estudiante buscarPorIddNative(Integer id);
 	
+	//Criteria API
+	public List<Estudiante> buscarPorDinamicamentePredicadosEdadCriteriaApi(String nombre, String apellido, Integer edad);
+	public List<Estudiante> buscarPorDinamicamentePredicadosOrdenadoCriteriaApi(String nombre, String apellido, Integer id, int edad);
 }

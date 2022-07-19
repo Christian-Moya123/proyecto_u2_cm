@@ -20,6 +20,8 @@ import com.uce.edu.demo.coreccion.service.IVehiculoService;
 
 import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
+import com.uce.edu.demo.repository.modelo.PersonaSencilla;
 import com.uce.edu.demo.service.IEstudianteJdbcService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
 
@@ -105,10 +107,10 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		//Criteria API
 		Persona perCriteriaApiQuery = this.iPersonaJpaService.buscarPorCedulaCriteriaApi("002");
-		logger.info("persona con Criteriaa API " + perCriteriaApiQuery);*/
+		logger.info("persona con Criteriaa API " + perCriteriaApiQuery);
 		
 		//Criteria API dinmica
-	/*	List<Persona> listaPersona1 = this.iPersonaJpaService.buscarPorDinamicamnteCriteriaApi("Paez", "Alex2","masculino");
+		List<Persona> listaPersona1 = this.iPersonaJpaService.buscarPorDinamicamnteCriteriaApi("Paez", "Alex2","masculino");
 		
 		for(Persona item:listaPersona1) {
 			logger.info("persona: " + item);
@@ -120,18 +122,16 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 			logger.info("persona con and y or: " + item);
 		}*/
 		
-		List<Estudiante> listaPersona1 = this.iEstudianteJpaService.buscarPorDinamicamentePredicadosEdadCriteriaApi("Abel", "Angulo", 19);
-		
-		for(Estudiante item:listaPersona1) {
-			logger.info("estudiante 1: " + item);
+		List<PersonaSencilla> listaPersona =  this.iPersonaJpaService.buscarPorApellidoSencillos("Alex");
+		for(PersonaSencilla perItem:listaPersona) {
+			logger.info("PERSONA sencilla " + perItem);
+			
 		}
 		
-		List<Estudiante> listaPersona2 = this.iEstudianteJpaService.buscarPorDinamicamentePredicadosOrdenadoCriteriaApi("Alan", "Jampol", 17, 0);
-		
-		for(Estudiante item:listaPersona2) {
-			logger.info("estudiante 2: " + item);
-		
-		
+		List<PersonaContadorGenero> listaPersonaContadasGenero = iPersonaJpaService.consultarCantidadPorGenero();
+		for(PersonaContadorGenero perItem:listaPersonaContadasGenero) {
+			logger.info("PERSONAs contadas por genero  " + perItem);
+			
 		}
 	}
 		

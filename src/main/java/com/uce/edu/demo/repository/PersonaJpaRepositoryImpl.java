@@ -257,6 +257,7 @@ public class PersonaJpaRepositoryImpl implements IPersonaJpaRepository{
 	@Override
 	public List<PersonaContadorGenero> consultarCantidadPorGenero() {
 		// TODO Auto-generated method stub
+		//select genero, count (genero) from estudiante where edad>19 group by genero
 		//select pers_genero, count (pers_genero) from persona group by pers_genero
 		//select NEW PersonaContadorGenero (p.genero, count(p.genero)) from Persona p group by p.genero
 		TypedQuery<PersonaContadorGenero> myQuery = this.entityManager.createQuery(

@@ -34,52 +34,92 @@ public class Estudiante {
 	@Column(name = "cedula")
 	private String cedula;
 	
+	@Column(name = "genero")
+	private String genero;
+	
+	
+
 	@Override
 	public String toString() {
 		return "Estudiante [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", cedula="
-				+ cedula + "]";
+				+ cedula + ", genero=" + genero + "]";
 	}
 
 	//get y set
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
+
+
 
 	public String getNombre() {
 		return nombre;
 	}
 
+
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+
 
 	public String getApellido() {
 		return apellido;
 	}
 
+
+
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
 
-	public int getEdad() {
+
+
+	public Integer getEdad() {
 		return edad;
 	}
 
-	public void setEdad(int edad) {
+
+
+	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
+
+
 
 	public String getCedula() {
 		return cedula;
 	}
 
+
+
 	public void setCedula(String cedula) {
 		this.cedula = cedula;
 	}
+
+
+
+	public String getGenero() {
+		return genero;
+	}
+
+
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	
+	
+
 	
 	
 

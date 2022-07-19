@@ -19,7 +19,11 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.repository.modelo.Estudiante;
+import com.uce.edu.demo.repository.modelo.EstudianteContadorSencilla;
+import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
+import com.uce.edu.demo.repository.modelo.PersonaSencilla;
 import com.uce.edu.demo.to.EstudianteTo;
 import com.uce.edu.demo.to.PersonaTo;
 
@@ -200,6 +204,27 @@ public class EstudianteJpaRepositoryImpl implements IEstudianteJpaRepository{
                 .createQuery(myQuery);
 
         return myQueryFinal.getResultList();
+	}
+
+	@Override
+	public List<EstudianteSencillo> buscarPorApellidoSencillos(String apellido) {
+		// TODO Auto-generated method stub
+		TypedQuery<EstudianteSencillo> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.repository.modelo.EstudianteSencillo(e.nombre, e.apellido, e.edad) FROM Estudiante e WHERE e.apellido = :datoApellido GROUP BY (e.nombre, e.apellido, e.edad) ORDER BY e.nombre",EstudianteSencillo.class);
+		myQuery.setParameter("datoApellido", apellido);
+		return myQuery.getResultList();
+	}
+
+	@Override
+	public List<EstudianteContadorSencilla> consultarCantidadPorGenero() {
+		// TODO Auto-generated method stub
+		//select genero, count (genero) from estudiante where edad>19 group by genero
+		//select pers_genero, count (pers_genero) from persona group by pers_genero
+		//select NEW PersonaContadorGenero (p.genero, count(p.genero)) from Persona p group by p.genero
+		TypedQuery<EstudianteContadorSencilla> myQuery = this.entityManager.createQuery(
+				"SELECT NEW com.uce.edu.demo.repository.modelo.EstudianteContadorSencilla(e.genero, COUNT(e.genero)) FROM Estudiante e  GROUP BY e.genero ", EstudianteContadorSencilla.class);
+		
+		return myQuery.getResultList();
 	}
 
 }

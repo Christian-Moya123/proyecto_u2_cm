@@ -19,6 +19,8 @@ import com.uce.edu.demo.coreccion.service.IPropietarioService;
 import com.uce.edu.demo.coreccion.service.IVehiculoService;
 
 import com.uce.edu.demo.repository.modelo.Estudiante;
+import com.uce.edu.demo.repository.modelo.EstudianteContadorSencilla;
+import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
 import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
 import com.uce.edu.demo.repository.modelo.PersonaSencilla;
@@ -73,7 +75,9 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		per1.setNombre("Alexander");
 		per1.setGenero("masculino");
 		
+
 		//this.iPersonaJpaService.insertar(per1);
+		
 		
 		
 		//type query
@@ -122,7 +126,7 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 			logger.info("persona con and y or: " + item);
 		}*/
 		
-		List<PersonaSencilla> listaPersona =  this.iPersonaJpaService.buscarPorApellidoSencillos("Alex");
+		/*List<PersonaSencilla> listaPersona =  this.iPersonaJpaService.buscarPorApellidoSencillos("Alex");
 		for(PersonaSencilla perItem:listaPersona) {
 			logger.info("PERSONA sencilla " + perItem);
 			
@@ -132,7 +136,21 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		for(PersonaContadorGenero perItem:listaPersonaContadasGenero) {
 			logger.info("PERSONAs contadas por genero  " + perItem);
 			
+		}*/
+		List<EstudianteSencillo> listaEstudiante =  this.iEstudianteJpaService.buscarPorApellidoSencillos("Charro");
+		for(EstudianteSencillo perItem:listaEstudiante) {
+			logger.info("Estudiante sencilla " + perItem);
+			
 		}
+		
+		List<EstudianteContadorSencilla> listaEstudianteContadaPorGenero = this.iEstudianteJpaService.consultarCantidadPorGenero();
+		for(EstudianteContadorSencilla perItem:listaEstudianteContadaPorGenero) {
+			logger.info("Estudiante contadas por genero  " + perItem);
+			
+		}
+		
+		
+		
 	}
 		
 }

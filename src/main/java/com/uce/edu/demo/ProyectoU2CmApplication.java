@@ -17,13 +17,15 @@ import com.uce.edu.demo.coreccion.modelo.Vehiculo;
 import com.uce.edu.demo.coreccion.service.IMatriculaGestorService;
 import com.uce.edu.demo.coreccion.service.IPropietarioService;
 import com.uce.edu.demo.coreccion.service.IVehiculoService;
-
+import com.uce.edu.demo.repository.modelo.Ciudadano;
+import com.uce.edu.demo.repository.modelo.Empleado;
 import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.EstudianteContadorSencilla;
 import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
 import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
 import com.uce.edu.demo.repository.modelo.PersonaSencilla;
+import com.uce.edu.demo.service.ICiudadanoJpaService;
 import com.uce.edu.demo.service.IEstudianteJdbcService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
 
@@ -49,6 +51,9 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired 
 	private IEstudianteJpaService iEstudianteJpaService;
+	
+	@Autowired
+	private ICiudadanoJpaService iCiudadanoJpaService; 
 	/*
 	@Autowired
 	private IVehiculoService iVehiculoService;
@@ -70,86 +75,40 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		Persona per1 = new Persona();
-		per1.setApellido("velascas");
+		per1.setApellido("Cambelle");
 		per1.setCedula("0011");
-		per1.setNombre("Alexander");
+		per1.setNombre("Abel");
 		per1.setGenero("masculino");
 		
-
-		//this.iPersonaJpaService.insertar(per1);
+		Ciudadano ciu1= new Ciudadano();
+		ciu1.setApellido("Maria");
+		ciu1.setNombre("Ana");
 		
 		
 		
-		//type query
-	/*
-		Persona perTyped = this.iPersonaJpaService.buscarPorCedulaType("0011");
-		logger.info("persona con typed " + perTyped);
+		Empleado empl1 = new Empleado();
+		empl1.setCodigoIess("00112");
+		empl1.setSalario(new BigDecimal(100));
+		empl1.setCiudadano(ciu1);
 		
-		//named query
-		Persona perNamed = this.iPersonaJpaService.buscarPorCedulaNamed("0011");
-		logger.info("persona con Named " + perNamed);
+		ciu1.setEmpleado(empl1);
 		
-		//typed y named query
-		Persona perTypedNamed = this.iPersonaJpaService.buscarPorCedulaNamedTyped("001");
-		logger.info("persona con TypedNamed " + perTypedNamed);
+		this.iCiudadanoJpaService.insertarCiudadano(ciu1);
 		
-		//varios named query
-		List<Persona> listaPersona = this.iPersonaJpaService.buscarPorNombreApellido("Paez", "Alex2");
-		
-		for(Persona item:listaPersona) {
-			logger.info("persona: " + item);
-		}*/
+		Ciudadano ciu2= new Ciudadano();
+		ciu1.setApellido("Maria2");
+		ciu1.setNombre("Ana2");
 		
 		
-	/*	//NATIVE QUERY
-		Persona perNativeQuery = this.iPersonaJpaService.buscarPorCedulaNative("001");
-		logger.info("persona con Native query " + perNativeQuery);
 		
-		//Named NATIVE QUERY
-		Persona perNamedNativeQuery = this.iPersonaJpaService.buscarPorCedulaNamedNative("002");
-		logger.info("persona con Named Native query " + perNamedNativeQuery);
+		Empleado empl2 = new Empleado();
+		empl2.setCodigoIess("001122");
+		empl2.setSalario(new BigDecimal(100));
+		empl2.setCiudadano(ciu1);
 		
-		//Criteria API
-		Persona perCriteriaApiQuery = this.iPersonaJpaService.buscarPorCedulaCriteriaApi("002");
-		logger.info("persona con Criteriaa API " + perCriteriaApiQuery);
+		ciu1.setEmpleado(empl1);
 		
-		//Criteria API dinmica
-		List<Persona> listaPersona1 = this.iPersonaJpaService.buscarPorDinamicamnteCriteriaApi("Paez", "Alex2","masculino");
-		
-		for(Persona item:listaPersona1) {
-			logger.info("persona: " + item);
-		}
-		
-		List<Persona> listaPersona2 = this.iPersonaJpaService.buscarPorDinamicamnteCriteriaApi("Charro", "Maria","femenino");
-		
-		for(Persona item:listaPersona2) {
-			logger.info("persona con and y or: " + item);
-		}*/
-		
-		/*List<PersonaSencilla> listaPersona =  this.iPersonaJpaService.buscarPorApellidoSencillos("Alex");
-		for(PersonaSencilla perItem:listaPersona) {
-			logger.info("PERSONA sencilla " + perItem);
-			
-		}
-		
-		List<PersonaContadorGenero> listaPersonaContadasGenero = iPersonaJpaService.consultarCantidadPorGenero();
-		for(PersonaContadorGenero perItem:listaPersonaContadasGenero) {
-			logger.info("PERSONAs contadas por genero  " + perItem);
-			
-		}*/
-		List<EstudianteSencillo> listaEstudiante =  this.iEstudianteJpaService.buscarPorApellidoSencillos("Charro");
-		for(EstudianteSencillo perItem:listaEstudiante) {
-			logger.info("Estudiante sencilla " + perItem);
-			
-		}
-		
-		List<EstudianteContadorSencilla> listaEstudianteContadaPorGenero = this.iEstudianteJpaService.consultarCantidadPorGenero();
-		for(EstudianteContadorSencilla perItem:listaEstudianteContadaPorGenero) {
-			logger.info("Estudiante contadas por genero  " + perItem);
-			
-		}
-		
-		
+		this.iCiudadanoJpaService.insertarCiudadano(empl2);
 		
 	}
 		

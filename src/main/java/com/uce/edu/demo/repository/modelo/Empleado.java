@@ -31,7 +31,7 @@ public class Empleado {
 	@Column(name ="empl_salario")
 	private BigDecimal salario;
 	
-	@OneToOne(mappedBy = "empleado", cascade = CascadeType.ALL)
+	@OneToOne//(mappedBy = "empleado", cascade = CascadeType.ALL)
 	@JoinColumn(name ="empl_id_ciudadano")//este es la clave foranea 
 	private Ciudadano ciudadano;
 	

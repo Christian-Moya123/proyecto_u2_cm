@@ -12,12 +12,30 @@ import com.uce.edu.demo.repository.modelo.Persona;
 public class CiudadanoJpaService  implements ICiudadanoJpaService{
 	
 	@Autowired
-	private ICiudadanoJpaRepository  iPersonaJpaRepository; 
+	private ICiudadanoJpaRepository  iCiudadanoJpaRepository; 
 
 	@Override
 	public void insertarCiudadano(Ciudadano ciudadano) {
 		// TODO Auto-generated method stub
-		this.iPersonaJpaRepository.insertar(ciudadano);
+		this.iCiudadanoJpaRepository.insertar(ciudadano);
+	}
+
+	@Override
+	public Ciudadano buscarPorId(Integer id) {
+		// TODO Auto-generated method stub
+		return this.iCiudadanoJpaRepository.buscarPorId(id);
+	}
+
+	@Override
+	public void actualizarPorId(Ciudadano ciudadano) {
+		// TODO Auto-generated method stub
+		this.iCiudadanoJpaRepository.actualizarPorId(ciudadano);
+	}
+
+	@Override
+	public void eliminarPorId(Integer id) {
+		// TODO Auto-generated method stub
+		this.iCiudadanoJpaRepository.eliminarPorId(id);
 	}
 
 }

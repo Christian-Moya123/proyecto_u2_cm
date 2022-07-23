@@ -26,10 +26,13 @@ import com.uce.edu.demo.repository.modelo.Pasaporte;
 import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
 import com.uce.edu.demo.repository.modelo.PersonaSencilla;
+import com.uce.edu.demo.repository.modelo.onetomany.Habitacion;
+import com.uce.edu.demo.repository.modelo.onetomany.Hotel;
 import com.uce.edu.demo.service.ICiudadanoJpaService;
 import com.uce.edu.demo.service.IEstudianteJdbcService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
-
+import com.uce.edu.demo.service.IHabitacionService;
+import com.uce.edu.demo.service.IHotelJpaServioce;
 import com.uce.edu.demo.service.IPersonaJdbcService;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
@@ -55,6 +58,12 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ICiudadanoJpaService iCiudadanoJpaService; 
+	
+	@Autowired
+	private IHotelJpaServioce  iHotelJpaServioce;
+	
+	@Autowired
+	private IHabitacionService HabitacionService ;
 	/*
 	@Autowired
 	private IVehiculoService iVehiculoService;
@@ -106,33 +115,36 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		this.iCiudadanoJpaService.insertarCiudadano(empl2);*/
 		
-		Ciudadano ciu2 = new Ciudadano();
-		ciu2.setApellido("Cardobal6");
-		ciu2.setCedula("0016");
-		ciu2.setFechaNacimiento(LocalDateTime.of(2012, 1,23,0,0));
-		ciu2.setNombre("Alexander6");
+		Hotel hotel1= new Hotel();
+		hotel1.setNombre("Gilton Colon GYU");
+		hotel1.setDireccion("Malecon");
+		
+		//this.iHotelJpaServioce.insertarHotel(hotel1);
 		
 		
-		Pasaporte pasa1 = new Pasaporte();
-		pasa1.setFechaCaducidad(LocalDateTime.of(2032, 11,23,0,0));
-		pasa1.setFechaEmision(LocalDateTime.now());
-		pasa1.setNumero(100);
-		pasa1.setCiudadano(ciu2);
+		//PARA INGRESAR HABITACIONES con el dato de hotel
+		//buscar el hotel por un numero , vasta con el id ingresar a las habitaciones
+		Hotel hote = new Hotel();
+		hote.setId(1);
 		
-		ciu2.setPasaporte(pasa1);
 		
-		//INSERTAR
-		this.iCiudadanoJpaService.insertarCiudadano(ciu2);
+		Habitacion habi1 = new Habitacion();
+		habi1.setNumero("A2334");
+		habi1.setPiso("10");
+		habi1.setTipo("ffamiliar");
+		habi1.setHotel(hote);
 		
-		//Eliminar
-		//this.iCiudadanoJpaService.eliminarPorId(11);
+		Habitacion habi2 = new Habitacion();
+		habi2.setNumero("A2334");
+		habi2.setPiso("10");
+		habi2.setTipo("matrimoniar");
+		habi2.setHotel(hote);
 		
-		//Buscar
-		logger.info("se busca el ciudadano " + this.iCiudadanoJpaService.buscarPorId(13));
 		
-		//ACTUALIZAR
-		ciu2.setApellido("Toapanta");
-		//this.iCiudadanoJpaService.actualizarPorId(ciu2);
+		this.HabitacionService.insertar(habi1);
+		this.HabitacionService.insertar(habi2);
+		
+		
 		
 		
 	}

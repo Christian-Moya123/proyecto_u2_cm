@@ -26,13 +26,17 @@ import com.uce.edu.demo.repository.modelo.Pasaporte;
 import com.uce.edu.demo.repository.modelo.Persona;
 import com.uce.edu.demo.repository.modelo.PersonaContadorGenero;
 import com.uce.edu.demo.repository.modelo.PersonaSencilla;
+import com.uce.edu.demo.repository.modelo.onetomany.Cliente;
 import com.uce.edu.demo.repository.modelo.onetomany.Habitacion;
 import com.uce.edu.demo.repository.modelo.onetomany.Hotel;
+import com.uce.edu.demo.repository.modelo.onetomany.Pedido;
 import com.uce.edu.demo.service.ICiudadanoJpaService;
+import com.uce.edu.demo.service.IClienteJpaService;
 import com.uce.edu.demo.service.IEstudianteJdbcService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
 import com.uce.edu.demo.service.IHabitacionService;
 import com.uce.edu.demo.service.IHotelJpaServioce;
+import com.uce.edu.demo.service.IPedidoService;
 import com.uce.edu.demo.service.IPersonaJdbcService;
 import com.uce.edu.demo.service.IPersonaJpaService;
 
@@ -64,6 +68,12 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IHabitacionService HabitacionService ;
+	
+	@Autowired
+	private IClienteJpaService clienteService ;
+	
+	@Autowired
+	private IPedidoService pedidoService ;
 	/*
 	@Autowired
 	private IVehiculoService iVehiculoService;
@@ -141,11 +151,51 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		habi2.setHotel(hote);
 		
 		
-		this.HabitacionService.insertar(habi1);
-		this.HabitacionService.insertar(habi2);
+		//this.HabitacionService.insertar(habi1);
+		//this.HabitacionService.insertar(habi2);
 		
+		//CLIENTE///////////////////////////////////////////////////////////////////
+		//INSERTAR
+		Cliente clie1 = new Cliente();
+		clie1.setApellido("Moya");
+		clie1.setCedula("0001");
+		clie1.setNombre("Alex");
 		
+		//this.clienteService.insertarCliente(clie1);
 		
+		//Buscar
+		//logger.info("el cliente buscado es "+ this.clienteService.buscarPorId(1));
+		
+		//Actualizar
+		Cliente clie2 = new Cliente();
+		clie2.setApellido("Israelf");
+		//this.clienteService.actualizarPorId(clie2);
+		
+		//Eliminar
+		//this.clienteService.eliminarPorId(3);
+		
+		//PEDIDOS/////////////////////////////////////////////////////////////////////
+		//Insertar
+		Cliente cliente = new Cliente();
+		cliente.setId(1);
+		
+		Pedido pedi1= new Pedido();
+		pedi1.setNombreP("Carnes1");
+		pedi1.setPeso(100);
+		pedi1.setTipo("embutidos1");
+		pedi1.setCliente(cliente);
+		
+		//this.pedidoService.insertarPedido(pedi1);
+		
+		//Eliminar
+		//this.pedidoService.eliminarPorId(1);
+		
+		//Buscar
+		logger.info("el pedido es " + this.pedidoService.buscarPorId(2));
+		
+		//Actualizar
+		pedi1.setPeso(500);
+		this.pedidoService.actualizarPorId(pedi1);
 		
 	}
 		

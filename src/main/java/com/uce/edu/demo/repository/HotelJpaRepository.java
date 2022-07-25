@@ -15,6 +15,7 @@ public class HotelJpaRepository implements IHotelRepository
 {
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 	@Override
 	public void insertarHotel(Hotel hotel) {
 		// TODO Auto-generated method stub

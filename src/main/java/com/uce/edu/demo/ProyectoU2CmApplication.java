@@ -4,7 +4,9 @@ package com.uce.edu.demo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,8 @@ import com.uce.edu.demo.coreccion.modelo.Vehiculo;
 import com.uce.edu.demo.coreccion.service.IMatriculaGestorService;
 import com.uce.edu.demo.coreccion.service.IPropietarioService;
 import com.uce.edu.demo.coreccion.service.IVehiculoService;
-import com.uce.edu.demo.repository.modelo.Ciudadano;
-import com.uce.edu.demo.repository.modelo.Empleado;
+import com.uce.edu.demo.manytomany.Autor;
+import com.uce.edu.demo.manytomany.Libro;
 import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.EstudianteContadorSencilla;
 import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
@@ -30,12 +32,15 @@ import com.uce.edu.demo.repository.modelo.onetomany.Cliente;
 import com.uce.edu.demo.repository.modelo.onetomany.Habitacion;
 import com.uce.edu.demo.repository.modelo.onetomany.Hotel;
 import com.uce.edu.demo.repository.modelo.onetomany.Pedido;
+import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano;
+import com.uce.edu.demo.repository.modelo.onetoone.Empleado;
 import com.uce.edu.demo.service.ICiudadanoJpaService;
 import com.uce.edu.demo.service.IClienteJpaService;
 import com.uce.edu.demo.service.IEstudianteJdbcService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
 import com.uce.edu.demo.service.IHabitacionService;
 import com.uce.edu.demo.service.IHotelJpaServioce;
+import com.uce.edu.demo.service.ILibroService;
 import com.uce.edu.demo.service.IPedidoService;
 import com.uce.edu.demo.service.IPersonaJdbcService;
 import com.uce.edu.demo.service.IPersonaJpaService;
@@ -74,6 +79,9 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IPedidoService pedidoService ;
+	
+	@Autowired
+	private ILibroService libroService ;
 	/*
 	@Autowired
 	private IVehiculoService iVehiculoService;
@@ -108,94 +116,34 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		ciu1.setEmpleado(empl1);
 		
-		//this.iCiudadanoJpaService.insertarCiudadano(ciu1);
-		/*
-		Ciudadano ciu2= new Ciudadano();
-		ciu1.setApellido("Maria2");
-		ciu1.setNombre("Ana2");
 		
-		
-		
-		Empleado empl2 = new Empleado();
-		empl2.setCodigoIess("001122");
-		empl2.setSalario(new BigDecimal(100));
-		empl2.setCiudadano(ciu1);
-		
-		ciu1.setEmpleado(empl1);
-		
-		this.iCiudadanoJpaService.insertarCiudadano(empl2);*/
 		
 		Hotel hotel1= new Hotel();
 		hotel1.setNombre("Gilton Colon GYU");
 		hotel1.setDireccion("Malecon");
-		
-		//this.iHotelJpaServioce.insertarHotel(hotel1);
-		
-		
-		//PARA INGRESAR HABITACIONES con el dato de hotel
-		//buscar el hotel por un numero , vasta con el id ingresar a las habitaciones
-		Hotel hote = new Hotel();
-		hote.setId(1);
+		////////////////////////////////////////////////
 		
 		
-		Habitacion habi1 = new Habitacion();
-		habi1.setNumero("A2334");
-		habi1.setPiso("10");
-		habi1.setTipo("ffamiliar");
-		habi1.setHotel(hote);
-		
-		Habitacion habi2 = new Habitacion();
-		habi2.setNumero("A2334");
-		habi2.setPiso("10");
-		habi2.setTipo("matrimoniar");
-		habi2.setHotel(hote);
+	
+		Libro libro1 = new Libro();
+		libro1.setTitulo("AAA3");
+		libro1.setCantidadPaginas(20);
 		
 		
-		//this.HabitacionService.insertar(habi1);
-		//this.HabitacionService.insertar(habi2);
 		
-		//CLIENTE///////////////////////////////////////////////////////////////////
-		//INSERTAR
-		Cliente clie1 = new Cliente();
-		clie1.setApellido("Moya");
-		clie1.setCedula("0001");
-		clie1.setNombre("Alex");
+		Autor autor1 = new Autor();
+		autor1.setNombre("Alex3");
 		
-		//this.clienteService.insertarCliente(clie1);
+		Autor autor2 = new Autor();
+		autor2.setNombre("Alex 2");
 		
-		//Buscar
-		//logger.info("el cliente buscado es "+ this.clienteService.buscarPorId(1));
+		Set<Autor> autores = new HashSet<>();
+		autores.add(autor1);
+		autores.add(autor2);
 		
-		//Actualizar
-		Cliente clie2 = new Cliente();
-		clie2.setApellido("Israelf");
-		//this.clienteService.actualizarPorId(clie2);
+		libro1.setAutores(autores);
 		
-		//Eliminar
-		//this.clienteService.eliminarPorId(3);
-		
-		//PEDIDOS/////////////////////////////////////////////////////////////////////
-		//Insertar
-		Cliente cliente = new Cliente();
-		cliente.setId(1);
-		
-		Pedido pedi1= new Pedido();
-		pedi1.setNombreP("Carnes1");
-		pedi1.setPeso(100);
-		pedi1.setTipo("embutidos1");
-		pedi1.setCliente(cliente);
-		
-		//this.pedidoService.insertarPedido(pedi1);
-		
-		//Eliminar
-		//this.pedidoService.eliminarPorId(1);
-		
-		//Buscar
-		logger.info("el pedido es " + this.pedidoService.buscarPorId(2));
-		
-		//Actualizar
-		pedi1.setPeso(500);
-		this.pedidoService.actualizarPorId(pedi1);
+		this.libroService.insertarLibro(libro1);
 		
 	}
 		

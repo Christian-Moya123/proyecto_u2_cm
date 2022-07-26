@@ -8,8 +8,8 @@ import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
 
 import com.uce.edu.demo.ProyectoU2CmApplication;
-import com.uce.edu.demo.repository.modelo.Ciudadano;
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano;
 
 @Repository
 @Transactional

@@ -5,8 +5,8 @@ import org.springframework.stereotype.Service;
 
 import com.uce.edu.demo.repository.ICiudadanoJpaRepository;
 import com.uce.edu.demo.repository.IPersonaJpaRepository;
-import com.uce.edu.demo.repository.modelo.Ciudadano;
 import com.uce.edu.demo.repository.modelo.Persona;
+import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano;
 
 @Service
 public class CiudadanoJpaService  implements ICiudadanoJpaService{

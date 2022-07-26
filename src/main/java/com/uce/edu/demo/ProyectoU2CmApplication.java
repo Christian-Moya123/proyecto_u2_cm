@@ -4,6 +4,7 @@ package com.uce.edu.demo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -21,6 +22,9 @@ import com.uce.edu.demo.coreccion.service.IPropietarioService;
 import com.uce.edu.demo.coreccion.service.IVehiculoService;
 import com.uce.edu.demo.manytomany.Autor;
 import com.uce.edu.demo.manytomany.Libro;
+import com.uce.edu.demo.manytomany.segundaf.Autor2;
+import com.uce.edu.demo.manytomany.segundaf.AutorLibro2;
+import com.uce.edu.demo.manytomany.segundaf.Libro2;
 import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.EstudianteContadorSencilla;
 import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
@@ -34,12 +38,15 @@ import com.uce.edu.demo.repository.modelo.onetomany.Hotel;
 import com.uce.edu.demo.repository.modelo.onetomany.Pedido;
 import com.uce.edu.demo.repository.modelo.onetoone.Ciudadano;
 import com.uce.edu.demo.repository.modelo.onetoone.Empleado;
+import com.uce.edu.demo.service.IAutor2Service;
 import com.uce.edu.demo.service.ICiudadanoJpaService;
 import com.uce.edu.demo.service.IClienteJpaService;
 import com.uce.edu.demo.service.IEstudianteJdbcService;
 import com.uce.edu.demo.service.IEstudianteJpaService;
 import com.uce.edu.demo.service.IHabitacionService;
 import com.uce.edu.demo.service.IHotelJpaServioce;
+import com.uce.edu.demo.service.ILibro2Service;
+import com.uce.edu.demo.service.ILibroAutorService;
 import com.uce.edu.demo.service.ILibroService;
 import com.uce.edu.demo.service.IPedidoService;
 import com.uce.edu.demo.service.IPersonaJdbcService;
@@ -82,6 +89,15 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ILibroService libroService ;
+	
+	@Autowired
+	private IAutor2Service autor2Service ;
+	
+	@Autowired
+	private ILibro2Service libro2Service ;
+	
+	@Autowired
+	private ILibroAutorService libroAutor2Service ;
 	/*
 	@Autowired
 	private IVehiculoService iVehiculoService;
@@ -143,8 +159,44 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		libro1.setAutores(autores);
 		
-		this.libroService.insertarLibro(libro1);
+		//this.libroService.insertarLibro(libro1);
 		
+		///////////////////////////////////////////////////////
+		Autor2 aut1=new Autor2();
+		aut1.setNombre("Javier");
+		
+		Autor2 aut2=new Autor2();
+		aut1.setNombre("Alex");
+		
+		Libro2 lib1= new Libro2();
+		lib1.setCantidadPaginas(100);
+		lib1.setTitulo("bbb");
+		
+		Libro2 lib2= new Libro2();
+		lib2.setCantidadPaginas(200);
+		lib2.setTitulo("ccc");
+		
+		
+		//INSERCION DE UN ELEMENTO
+		AutorLibro2 al1 = new AutorLibro2();
+		aut1.setId(1);
+		lib1.setId(1);
+		
+		al1.setAutor2(aut1);
+		al1.setLibro2(lib1);
+		
+		//this.libroAutor2Service.insertarAutorLibro(al1);
+		
+		
+		
+		AutorLibro2 al2 = new AutorLibro2();
+		aut2.setId(2);
+		lib2.setId(2);
+		
+		al2.setAutor2(aut2);
+		al2.setLibro2(lib2);
+		
+		this.libroAutor2Service.insertarAutorLibro(al2);
 	}
 		
 }

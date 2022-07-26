@@ -1,5 +1,6 @@
-package com.uce.edu.demo.manytomany;
+package com.uce.edu.demo.manytomany.segundaf;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,17 +12,20 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-//////////////////////////////////////////////////////////PRIMERA FORMA
+
+import com.uce.edu.demo.manytomany.Autor;
+//////////////////////////////////////////////////////////SEGUNDAFORMA
 @Entity
-@Table(name="libro")
-public class Libro {
+@Table(name="libro_dos")
+public class Libro2 {
 
 	@Id
 	@Column(name="libr_id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "libr_name_gerneration")
-	@SequenceGenerator(name = "libr_name_gerneration",sequenceName = "libr_id_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "libr2_name_gerneration")
+	@SequenceGenerator(name = "libr2_name_gerneration",sequenceName = "libr2_id_seq", allocationSize = 1)
 	private Integer id;
 	
 	@Column(name="libr_titulo")
@@ -30,10 +34,9 @@ public class Libro {
 	@Column(name="libr_cantidad_pagina")
 	private Integer cantidadPaginas;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name ="libro_autor", joinColumns = @JoinColumn(name="liau_id_libro"), inverseJoinColumns =@JoinColumn(name="liau_id_autor") )//este  especifica la tabla de rompimiento y se lo pone en  el principal, pero de muchos a muchos no importa a cual le pones principal
-	//joinColums fK de la tabla principal, inverseJoinColumns fk de la tabal secundaria
-	private Set<Autor> autores;
+	
+	@OneToMany(mappedBy = "libro2")
+	private List<AutorLibro2> autorLibros;
 
 	
 	//set y get
@@ -61,13 +64,14 @@ public class Libro {
 		this.cantidadPaginas = cantidadPaginas;
 	}
 
-	public Set<Autor> getAutores() {
-		return autores;
+	public List<AutorLibro2> getAutorLibros() {
+		return autorLibros;
 	}
 
-	public void setAutores(Set<Autor> autores) {
-		this.autores = autores;
+	public void setAutorLibros(List<AutorLibro2> autorLibros) {
+		this.autorLibros = autorLibros;
 	}
+
 
 
 	

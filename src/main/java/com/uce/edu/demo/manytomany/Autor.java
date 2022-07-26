@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
+//////////////////////////////////////////////////////////PRIMERA FORMA
 @Entity
 @Table(name="autor")
 public class Autor {

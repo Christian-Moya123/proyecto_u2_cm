@@ -51,7 +51,9 @@ import com.uce.edu.demo.service.ILibroService;
 import com.uce.edu.demo.service.IPedidoService;
 import com.uce.edu.demo.service.IPersonaJdbcService;
 import com.uce.edu.demo.service.IPersonaJpaService;
-
+import com.uce.edu.demo.taller27.cajero.modelo.DetalleFactura;
+import com.uce.edu.demo.taller27.cajero.modelo.Factura;
+import com.uce.edu.demo.taller27.cajero.service.IFacturaService;
 import com.uce.edu.demo.to.EstudianteTo;
 import com.uce.edu.demo.to.PersonaTo;
 
@@ -98,6 +100,9 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired
 	private ILibroAutorService libroAutor2Service ;
+	
+	@Autowired
+	private IFacturaService facturaService ;
 	/*
 	@Autowired
 	private IVehiculoService iVehiculoService;
@@ -161,42 +166,20 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		//this.libroService.insertarLibro(libro1);
 		
-		///////////////////////////////////////////////////////
-		Autor2 aut1=new Autor2();
-		aut1.setNombre("Javier");
-		
-		Autor2 aut2=new Autor2();
-		aut1.setNombre("Alex");
-		
-		Libro2 lib1= new Libro2();
-		lib1.setCantidadPaginas(100);
-		lib1.setTitulo("bbb");
-		
-		Libro2 lib2= new Libro2();
-		lib2.setCantidadPaginas(200);
-		lib2.setTitulo("ccc");
+
+		Factura fact = this.facturaService.consultarFactura(1);
+		logger.info("numero " + fact.getNumero());
+		logger.info("fecha " +fact.getFecha());
 		
 		
-		//INSERCION DE UN ELEMENTO
-		AutorLibro2 al1 = new AutorLibro2();
-		aut1.setId(1);
-		lib1.setId(1);
+		logger.info("cliente " + fact.getCliente().getNumeroTarjeta());
 		
-		al1.setAutor2(aut1);
-		al1.setLibro2(lib1);
+		List<DetalleFactura> detaller = fact.getDetalles();
 		
-		//this.libroAutor2Service.insertarAutorLibro(al1);
-		
-		
-		
-		AutorLibro2 al2 = new AutorLibro2();
-		aut2.setId(2);
-		lib2.setId(2);
-		
-		al2.setAutor2(aut2);
-		al2.setLibro2(lib2);
-		
-		this.libroAutor2Service.insertarAutorLibro(al2);
+		for(DetalleFactura deta:detaller) {
+			logger.info("detalle " + deta);
+		}
+	
 	}
 		
 }

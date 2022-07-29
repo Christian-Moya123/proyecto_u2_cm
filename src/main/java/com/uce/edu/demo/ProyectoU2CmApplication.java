@@ -15,6 +15,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.uce.edu.demo.coreccion.modelo.Matricula;
 import com.uce.edu.demo.coreccion.modelo.Propietario;
 import com.uce.edu.demo.coreccion.modelo.Vehiculo;
 import com.uce.edu.demo.coreccion.service.IMatriculaGestorService;
@@ -103,7 +104,7 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IFacturaService facturaService ;
-	/*
+	
 	@Autowired
 	private IVehiculoService iVehiculoService;
 	
@@ -111,8 +112,8 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	private IPropietarioService iPropietarioService;
 	
 	@Autowired
-	private IMatriculaGestorService iMatriculaGestorService;*/
-	
+	private IMatriculaGestorService iMatriculaGestorService;
+
 	
 	public static void main(String[] args)  {
 		SpringApplication.run(ProyectoU2CmApplication.class, args);
@@ -166,7 +167,7 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		//this.libroService.insertarLibro(libro1);
 		
-
+/*
 		Factura fact = this.facturaService.consultarFactura(1);
 		logger.info("numero " + fact.getNumero());
 		logger.info("fecha " +fact.getFecha());
@@ -178,7 +179,41 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 		
 		for(DetalleFactura deta:detaller) {
 			logger.info("detalle " + deta);
-		}
+		}*/
+		
+		
+		//Punto
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.setMarca("toyota1");
+		vehiculo.setPlaca("sts22221");
+		vehiculo.setPrecio(new BigDecimal(60000));
+		vehiculo.setTipo("L1");
+
+		this.iVehiculoService.insertarV(vehiculo);
+
+		//Punto 2
+		vehiculo.setPrecio(new BigDecimal(3500));
+		vehiculo.setPlaca("sts2222");
+		vehiculo.setMarca("AWM");
+		
+		
+		//this.iVehiculoService.actualizarV(vehiculo);
+
+
+		//Punto 3
+		Propietario pro = new Propietario();
+		pro.setApellido("Moya2");
+		pro.setNombre("Christian2");
+		pro.setCedula("123123122");
+		pro.setFecha(LocalDateTime.now());
+		
+		this.iPropietarioService.crear(pro);
+
+		//Punto 4
+		 this.iMatriculaGestorService.generarMaatricula( "123123122","sts22221");
+		
+		
+		 
 	
 	}
 		

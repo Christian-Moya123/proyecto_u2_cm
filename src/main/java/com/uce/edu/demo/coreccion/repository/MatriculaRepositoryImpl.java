@@ -18,9 +18,10 @@ public class MatriculaRepositoryImpl implements IMatriculaRepository{
 	private EntityManager entityManager;
 
 	@Override
-	public void crear(Matricula matricula) {
+	public Matricula crear(Matricula matricula) {
 		// TODO Auto-generated method stub
 		 this.entityManager.persist(matricula);
+		 return matricula;
 	}
 
 }

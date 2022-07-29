@@ -1,5 +1,7 @@
 package com.uce.edu.demo.coreccion.service;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import com.uce.edu.demo.coreccion.repository.IVehiculoRepository;
 
 
 @Service
+@Transactional
 public class VehiculoServiceImpl implements IVehiculoService{
 
 	@Autowired

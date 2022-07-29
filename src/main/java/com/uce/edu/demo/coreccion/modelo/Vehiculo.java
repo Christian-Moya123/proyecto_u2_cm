@@ -2,11 +2,13 @@ package com.uce.edu.demo.coreccion.modelo;
 
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -32,38 +34,10 @@ public class Vehiculo {
 	@Column(name="vehi_precio")
 	private BigDecimal precio;
 	
-	@Override
-	public String toString() {
-		return "Vehiculo [idV=" + idV + ", marca=" + marca + ", placa=" + placa + ", tipo=" + tipo + ", precio="
-				+ precio + "]";
-	}
-	
-	//get y set
-	public String getMarca() {
-		return marca;
-	}
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-	public String getPlaca() {
-		return placa;
-	}
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
-	public String getTipo() {
-		return tipo;
-	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-	public BigDecimal getPrecio() {
-		return precio;
-	}
-	public void setPrecio(BigDecimal precio) {
-		this.precio = precio;
-	}
+	@OneToOne(mappedBy = "vehiculo", cascade = CascadeType.ALL)
+	private Matricula matricula;
 
+	//get y set
 	public Integer getIdV() {
 		return idV;
 	}
@@ -71,6 +45,54 @@ public class Vehiculo {
 	public void setIdV(Integer idV) {
 		this.idV = idV;
 	}
+
+	public String getMarca() {
+		return marca;
+	}
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+	public String getPlaca() {
+		return placa;
+	}
+
+	public void setPlaca(String placa) {
+		this.placa = placa;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public BigDecimal getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(BigDecimal precio) {
+		this.precio = precio;
+	}
+
+	public Matricula getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(Matricula matricula) {
+		this.matricula = matricula;
+	}
+	
+	
+	
+	
+
+
+
+	
 	
 	
 	

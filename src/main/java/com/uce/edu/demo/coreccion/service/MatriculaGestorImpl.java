@@ -3,6 +3,8 @@ package com.uce.edu.demo.coreccion.service;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import com.uce.edu.demo.coreccion.repository.IVehiculoRepository;
 
 
 @Service
+@Transactional
 public class MatriculaGestorImpl implements IMatriculaGestorService{
 	
 	@Autowired

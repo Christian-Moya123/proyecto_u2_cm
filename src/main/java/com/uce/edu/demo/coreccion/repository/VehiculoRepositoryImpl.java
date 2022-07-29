@@ -35,7 +35,7 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 		myQuery.setParameter("datoPrecio",vehiculo.getPrecio());
 		myQuery.setParameter("datoPlaca", vehiculo.getPlaca());
 		
-		//return myQuery.executeUpdate();
+		myQuery.executeUpdate();
 	}
 
 	@Override
@@ -49,11 +49,11 @@ public class VehiculoRepositoryImpl implements IVehiculoRepository {
 	}
 
 	@Override
-	public List<Vehiculo> buscarPorPlaca(String placa) {
+	public Vehiculo buscarPorPlaca(String placa) {
 		// TODO Auto-generated method stub
 		Query myQuery = this.entityManager.createQuery("SELECT v FROM Vehiculo v where v.placa = :datoPlaca");
 		myQuery.setParameter("datoPlaca", placa);
-		return myQuery.getResultList();
+		return (Vehiculo) myQuery.getSingleResult();
 	}
 
 	

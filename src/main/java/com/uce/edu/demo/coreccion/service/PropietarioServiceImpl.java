@@ -2,6 +2,8 @@ package com.uce.edu.demo.coreccion.service;
 
 import java.time.LocalDateTime;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.uce.edu.demo.coreccion.repository.IPropietarioRepository;
 
 
 @Service
+@Transactional
 public class PropietarioServiceImpl implements IPropietarioService{
 	
 	@Autowired

@@ -10,7 +10,7 @@ public interface IVehiculoRepository {
 	public void insertar(Vehiculo vehiculo);
 	public void actualizarPorPlaca(Vehiculo vehiculo);
 	public int eliminarPorPlaca(String placa);
-	public List<Vehiculo> buscarPorPlaca(String placa);
+	public Vehiculo buscarPorPlaca(String placa);
 	
 	
 

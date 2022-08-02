@@ -21,11 +21,18 @@ import com.uce.edu.demo.coreccion.modelo.Vehiculo;
 import com.uce.edu.demo.coreccion.service.IMatriculaGestorService;
 import com.uce.edu.demo.coreccion.service.IPropietarioService;
 import com.uce.edu.demo.coreccion.service.IVehiculoService;
+import com.uce.edu.demo.correccion.dos.modelo.CitaMedica;
+import com.uce.edu.demo.correccion.dos.modelo.Doctor;
+import com.uce.edu.demo.correccion.dos.modelo.Paciente;
+import com.uce.edu.demo.correccion.dos.service.IDoctorService;
+import com.uce.edu.demo.correccion.dos.service.IGestorCitaMedicaService;
+import com.uce.edu.demo.correccion.dos.service.IPacienteService;
 import com.uce.edu.demo.manytomany.Autor;
 import com.uce.edu.demo.manytomany.Libro;
 import com.uce.edu.demo.manytomany.segundaf.Autor2;
 import com.uce.edu.demo.manytomany.segundaf.AutorLibro2;
 import com.uce.edu.demo.manytomany.segundaf.Libro2;
+
 import com.uce.edu.demo.repository.modelo.Estudiante;
 import com.uce.edu.demo.repository.modelo.EstudianteContadorSencilla;
 import com.uce.edu.demo.repository.modelo.EstudianteSencillo;
@@ -113,6 +120,15 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 	@Autowired
 	private IMatriculaGestorService iMatriculaGestorService;
+	
+	@Autowired
+	private IDoctorService doctorService;
+	
+	@Autowired
+	private IPacienteService pacienteService;
+	
+	@Autowired
+	private IGestorCitaMedicaService citaMedicaService;
 
 	
 	public static void main(String[] args)  {
@@ -125,96 +141,49 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
-		Ciudadano ciu1= new Ciudadano();
-		ciu1.setApellido("Maria2");
-		ciu1.setNombre("Ana2");
+		
+		Doctor doc1=  new Doctor();
+		doc1.setCedula("0001");
+		doc1.setNombre("Abel");
+		doc1.setApellido("Solano");
+		doc1.setFechaNacimiento(LocalDateTime.of(1959, 12,22,0,0));
+		doc1.setNumeroConsultorio("ccc2");
+		doc1.setCodigoSenescyt("aa1");
+		doc1.setGenero("M");
+		
+		Doctor doc2=  new Doctor();
+		doc2.setCedula("0002");
+		doc2.setNombre("Anastacia");
+		doc2.setApellido("Merinda");
+		doc2.setFechaNacimiento(LocalDateTime.of(1959, 12,22,0,0));
+		doc2.setNumeroConsultorio("ccc3");
+		doc2.setCodigoSenescyt("aa4");
+		doc2.setGenero("F");
+		
+		//this.doctorService.insertar(doc1);
+		//this.doctorService.insertar(doc2);
+		
+		//Funcionalidad 2 Insertar Pacientes
 		
 		
-		
-		Empleado empl1 = new Empleado();
-		empl1.setCodigoIess("001122");
-		empl1.setSalario(new BigDecimal(1001));
-		empl1.setCiudadano(ciu1);
-		
-		ciu1.setEmpleado(empl1);
-		
-		
-		
-		Hotel hotel1= new Hotel();
-		hotel1.setNombre("Gilton Colon GYU");
-		hotel1.setDireccion("Malecon");
-		////////////////////////////////////////////////
-		
+		Paciente pa2 = new Paciente();
+		pa2.setCedula("003");
+		pa2.setNombre("Maria");
+		pa2.setApellido("Tumbaico");
+		pa2.setFechaNacimiento(LocalDateTime.of(1899, 5, 6, 0, 0));
+		pa2.setCodigoSeguro("000b");
+		pa2.setEstatura(new Double("44"));
+		pa2.setPeso(new Double("444"));
+		pa2.setGenero("F");
 		
 	
-		Libro libro1 = new Libro();
-		libro1.setTitulo("AAA3");
-		libro1.setCantidadPaginas(20);
-		
-		
-		
-		Autor autor1 = new Autor();
-		autor1.setNombre("Alex3");
-		
-		Autor autor2 = new Autor();
-		autor2.setNombre("Alex 2");
-		
-		Set<Autor> autores = new HashSet<>();
-		autores.add(autor1);
-		autores.add(autor2);
-		
-		libro1.setAutores(autores);
-		
-		//this.libroService.insertarLibro(libro1);
-		
-/*
-		Factura fact = this.facturaService.consultarFactura(1);
-		logger.info("numero " + fact.getNumero());
-		logger.info("fecha " +fact.getFecha());
-		
-		
-		logger.info("cliente " + fact.getCliente().getNumeroTarjeta());
-		
-		List<DetalleFactura> detaller = fact.getDetalles();
-		
-		for(DetalleFactura deta:detaller) {
-			logger.info("detalle " + deta);
-		}*/
-		
-		
-		//Punto
-		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.setMarca("toyota1");
-		vehiculo.setPlaca("sts22221");
-		vehiculo.setPrecio(new BigDecimal(60000));
-		vehiculo.setTipo("L1");
-
-		this.iVehiculoService.insertarV(vehiculo);
-
-		//Punto 2
-		vehiculo.setPrecio(new BigDecimal(3500));
-		vehiculo.setPlaca("sts2222");
-		vehiculo.setMarca("AWM");
-		
-		
-		//this.iVehiculoService.actualizarV(vehiculo);
-
-
-		//Punto 3
-		Propietario pro = new Propietario();
-		pro.setApellido("Moya2");
-		pro.setNombre("Christian2");
-		pro.setCedula("123123122");
-		pro.setFecha(LocalDateTime.now());
-		
-		this.iPropietarioService.crear(pro);
-
-		//Punto 4
-		 this.iMatriculaGestorService.generarMaatricula( "123123122","sts22221");
-		
-		
+		//this.pacienteService.insertar(pa2);
 		 
+		 this.citaMedicaService.agendarCitaMedica("01", LocalDateTime.of(2018, 5,5,0,0), new BigDecimal(100), "Quitumbe", "003", "0002");
 	
+		 //this.citaMedicaService.actualizarCita("01", "aaa", "ssssssss", LocalDateTime.now());
+	
+		
 	}
 		
 }

@@ -24,6 +24,7 @@ import com.uce.edu.demo.coreccion.service.IVehiculoService;
 import com.uce.edu.demo.correccion.dos.modelo.CitaMedica;
 import com.uce.edu.demo.correccion.dos.modelo.Doctor;
 import com.uce.edu.demo.correccion.dos.modelo.Paciente;
+import com.uce.edu.demo.correccion.dos.modelo.PacienteSensillo;
 import com.uce.edu.demo.correccion.dos.service.IDoctorService;
 import com.uce.edu.demo.correccion.dos.service.IGestorCitaMedicaService;
 import com.uce.edu.demo.correccion.dos.service.IPacienteService;
@@ -179,10 +180,17 @@ public class ProyectoU2CmApplication implements CommandLineRunner {
 	
 		//this.pacienteService.insertar(pa2);
 		 
-		 this.citaMedicaService.agendarCitaMedica("01", LocalDateTime.of(2018, 5,5,0,0), new BigDecimal(100), "Quitumbe", "003", "0002");
+		 this.citaMedicaService.agendarCitaMedica("01", LocalDateTime.of(2018, 5,5,0,0), new BigDecimal(100), "Quitumbe", "0002", "003");
 	
 		 //this.citaMedicaService.actualizarCita("01", "aaa", "ssssssss", LocalDateTime.now());
 	
+		 
+		 List<PacienteSensillo > listaPacientes = this.pacienteService.buscar(LocalDateTime.of(1898, 5,5,0,0), "M");
+			
+			for(PacienteSensillo pItem:listaPacientes) {
+				logger.debug("rEPORTE DE PERSONAS  " + pItem);
+
+			}
 		
 	}
 		
